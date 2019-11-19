@@ -14,6 +14,9 @@ class Restaurant {
         this.oysterNumber = oysterNumber
     }
 
+    override fun toString(): String {
+        return "Restaurant(address='$address', name='$name', oysterCapacity=$oysterCapacity, oysterNumber=$oysterNumber)"
+    }
 
 
 }
