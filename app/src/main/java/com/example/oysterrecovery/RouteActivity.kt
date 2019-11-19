@@ -34,7 +34,14 @@ class RouteActivity : AppCompatActivity() {
                     val key = postSnapshot.key
                     val restaurant = postSnapshot.getValue(Restaurant::class.java)
                     resList.add(restaurant!!)
-                    Log.d(TAG, "RestaurantID is $key, Restaurant Attributes are $restaurant")
+                    val addy = restaurant.address
+                    val name = restaurant.name
+                    val capacity = restaurant.oysterCapacity
+                    val num = restaurant.oysterNumber
+
+                    Log.d(TAG, "RestaurantID is $key")
+                    Log.d(TAG, "Resaturant addy is $addy\n Restaurant name is $name\n" +
+                            "Restaurant capacity is $capacity\n Restaurant oyster amount is $num ")
                 }
             }
         })
