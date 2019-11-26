@@ -1,15 +1,51 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="100dp">
 
-    <TextView xmlns:android="http://schemas.android.com/apk/res/android"
-        android:id="@+id/route_item"
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:padding="10dip"
-        android:textSize="16dip"
-        android:textStyle="bold" >
-    </TextView>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal">
 
-</LinearLayout>
+<!--    <TextView xmlns:android="http://schemas.android.com/apk/res/android"-->
+<!--        android:id="@+id/route_item"-->
+<!--        android:layout_width="fill_parent"-->
+<!--        android:layout_height="fill_parent"-->
+<!--        android:padding="10dip"-->
+<!--        android:textSize="16dip"-->
+<!--        android:textStyle="bold" >-->
+<!--    </TextView>-->
+
+        <ImageView
+            android:id="@+id/routeIcon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:srcCompat="@tools:sample/avatars[6]" />
+
+        <TextView
+            android:id="@+id/route_item"
+            android:layout_width="140dp"
+            android:layout_height="51dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:text="TextView"
+            android:textAlignment="center" />
+
+        <TextView
+            android:id="@+id/milesAway"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_weight="1"
+            tools:text="@string/miles_away" />
+
+    </LinearLayout>
+
+
+
+</androidx.cardview.widget.CardView>
