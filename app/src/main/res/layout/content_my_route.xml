@@ -7,14 +7,104 @@
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context=".MyRouteActivity"
     tools:showIn="@layout/activity_my_route">
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" >
 
-    <TextView
-        android:id="@+id/textView2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="MyRouteActivity"
-        tools:layout_editor_absoluteX="165dp"
-        tools:layout_editor_absoluteY="77dp" />
+        <!-- Title -->
+
+        <LinearLayout
+            android:layout_width="358dp"
+            android:layout_height="645dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/TitleLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="My Routes"
+                android:textAppearance="?android:attr/textAppearanceLarge"></TextView>
+
+            <TextView
+                android:id="@+id/ToDoLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="ToDo"
+                android:textAppearance="?android:attr/textAppearanceLarge"></TextView>
+
+
+            <CheckBox
+                android:id="@+id/route1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/route1txt" />
+
+            <CheckBox
+                android:id="@+id/route2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checked="false"
+                android:text="@string/route2txt" />
+
+            <CheckBox
+                android:id="@+id/route3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/route3txt" />
+
+            <TextView
+                android:id="@+id/Collected"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="Collected"
+                android:textAppearance="?android:attr/textAppearanceLarge"></TextView>
+
+            <TextView
+                android:id="@+id/CollectedText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="438 Clams"
+                android:textAppearance="?android:attr/textAppearanceSmall"></TextView>
+
+            <TextView
+                android:id="@+id/ETL"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="Estimated Time Left"
+                android:textAppearance="?android:attr/textAppearanceLarge"></TextView>
+
+            <TextView
+                android:id="@+id/Destination"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="40min"
+                android:textAppearance="?android:attr/textAppearanceSmall"></TextView>
+
+            <TextView
+                android:id="@+id/DestinationText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="Drop-Off Destination"
+                android:textAppearance="?android:attr/textAppearanceLarge"></TextView>
+
+            <TextView
+                android:id="@+id/DropOff"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="ORP-Site A"
+                android:textAppearance="?android:attr/textAppearanceSmall"></TextView>
+
+        </LinearLayout>
+
+    </RelativeLayout>
 
     <Button
         android:id="@+id/button2"
