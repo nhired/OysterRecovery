@@ -6,7 +6,6 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="title_activity_route">RouteActivity</string>
     <string name="title_activity_my_route">MyRouteActivity</string>
-<<<<<<< HEAD
 
 
     <string name="route1txt">Route - Dist</string>
@@ -14,8 +13,6 @@
     <string name="route3txt">Route - Dist</string>
 
 
-=======
     <string name="route">Route:</string>
     <string name="miles_away">Miles Away: </string>
->>>>>>> ad5bf611284a53c5b2e57f4b3ca6c0e114a73f27
 </resources>
