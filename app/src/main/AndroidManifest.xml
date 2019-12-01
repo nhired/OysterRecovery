@@ -13,7 +13,12 @@
         <activity
             android:name=".MyRouteActivity"
             android:label="@string/title_activity_my_route"
+
             android:theme="@style/AppTheme.NoActionBar" />
+
+            android:theme="@style/AppTheme.NoActionBar"
+            android:exported="true">
+
         <activity
             android:name=".RouteActivity"
             android:exported="true"
