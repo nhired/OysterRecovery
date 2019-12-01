@@ -15,6 +15,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "448030946560-qeft29u4oni2gu0ljj5td7pidde3q85i.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.oysterrecovery",
+            "certificate_hash": "d4b86a17cff43fe15fdad4befc89ee9014494e95"
+          }
+        },
+        {
           "client_id": "448030946560-s8bj5a4pne12rlg9tltf7pggr2npoi90.apps.googleusercontent.com",
           "client_type": 3
         }

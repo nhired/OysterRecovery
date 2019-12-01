@@ -51,17 +51,9 @@ class RouteActivity : AppCompatActivity() {
             adapter.notifyDataSetChanged()
             getLastKey()
             getRoutes()
-
         }
         return true
     }
-
-
-
-
-
-
-
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -77,7 +69,8 @@ class RouteActivity : AppCompatActivity() {
         val dividerItemDecoration = DividerItemDecoration(recyclerView.context, layoutManager.orientation)
         recyclerView.addItemDecoration(dividerItemDecoration)
 
-        adapter = MyAdapter(this)
+
+        adapter = MyAdapter(this, resList)
         recyclerView.adapter = adapter
 
         getRoutes()
@@ -169,11 +162,7 @@ class RouteActivity : AppCompatActivity() {
     }
 
 
-
-
-
-    
     companion object {
-        val TAG = "FirebaseDB Reading"
+        val TAG = "FirebaseDB Reading of Routes"
     }
 }
