@@ -22,7 +22,7 @@ class MyRouteActivity : AppCompatActivity() {
         }
 
         button2.setOnClickListener{
-            val int =  Intent(this, MainActivity::class.java)
+            val int =  Intent(this, FinishActivity::class.java)
             startActivity(int)
         }
     }
