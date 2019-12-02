@@ -33,12 +33,19 @@
             android:name=".FinishActivity"
             android:label="@string/title_activity_finish"
             android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".SignUpActivity"></activity>
         <activity
             android:name=".MyRouteActivity"
             android:label="@string/title_activity_my_route"
+
             android:theme="@style/AppTheme.NoActionBar" />
+
+            android:theme="@style/AppTheme.NoActionBar"
+            android:exported="true">
+
         <activity
             android:name=".RouteActivity"
+            android:exported="true"
             android:label="@string/title_activity_route"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
@@ -51,6 +58,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".RestaurantListActivity"
+            android:exported="true" />
     </application>
 
 </manifest>

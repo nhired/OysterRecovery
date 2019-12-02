@@ -8,4 +8,13 @@
     <string name="title_activity_my_route">MyRouteActivity</string>
     <string name="title_activity_finish">FinishActivity</string>
     <string name="title_activity_maps">Map</string>
+
+
+    <string name="route1txt">Route - Dist</string>
+    <string name="route2txt">Route - Dist</string>
+    <string name="route3txt">Route - Dist</string>
+
+
+    <string name="route">Route:</string>
+    <string name="miles_away">Miles Away: </string>
 </resources>

@@ -1,25 +1,74 @@
 package com.example.oysterrecovery
 
-import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import com.google.android.material.snackbar.Snackbar
+import android.os.Handler
 import androidx.appcompat.app.AppCompatActivity
 import android.view.Menu
 import android.view.MenuItem
+import android.view.View
+import android.widget.RelativeLayout
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.FirebaseUser
+import com.squareup.okhttp.Route
 
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
 
+    private lateinit var auth: FirebaseAuth
+
+
+    lateinit var rellay1 : RelativeLayout
+    lateinit var rellay2 : RelativeLayout
+
+    val handler = Handler()
+
+    val runnable = Runnable {
+
+        rellay1.visibility = View.VISIBLE
+        rellay2.visibility = View.VISIBLE
+
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+
+        auth = FirebaseAuth.getInstance()
+
         // Set a click listener for first button widget
-        button1.setOnClickListener {
+
+        rellay1 = findViewById(R.id.rellay1)
+        rellay2 = findViewById(R.id.rellay2)
+
+        handler.postDelayed(runnable, 2000)
+
+
+        signUpBtn.setOnClickListener {
+            val int =  Intent(this, SignUpActivity::class.java)
+            startActivity(int)
+            finish()
+        }
+
+        loginBtn.setOnClickListener {
             val int =  Intent(this, RouteActivity::class.java)
             startActivity(int)
+            finish()
         }
+
+
+    }
+
+    public override fun onStart() {
+        super.onStart()
+        // Check if user is signed in (non-null) and update UI accordingly.
+        val currentUser = auth.currentUser
+        updateUI(currentUser)
+    }
+
+    fun updateUI(currentUser: FirebaseUser?) {
 
     }
 
