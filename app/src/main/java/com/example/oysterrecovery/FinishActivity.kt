@@ -3,6 +3,7 @@ package com.example.oysterrecovery
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import android.util.Log
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
@@ -21,6 +22,7 @@ class FinishActivity : AppCompatActivity(), OnMapReadyCallback {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_finish)
         setSupportActionBar(toolbar)
+        Log.w("Debugging", intent.getStringExtra("resOne"))
         getSupportActionBar()?.hide()
         val mapFragment = getSupportFragmentManager().findFragmentById(R.id.map) as SupportMapFragment
         mapFragment?.getMapAsync(this)
@@ -28,11 +30,11 @@ class FinishActivity : AppCompatActivity(), OnMapReadyCallback {
         button4.setOnClickListener {
             //Calls reoptimize, then resets back to routes
             optimizeRoutes()
-            val int =  Intent(this, MainActivity::class.java)
+            val int =  Intent(this, RouteActivity::class.java)
             startActivity(int)
         }
         //Retrieve oyster count from intent, uncomment when merging.
-        //textView4.text = "You helped save " + intent.getStringExtra("TOTAL_OYSTERS") + " oysters!"
+        textView4.text = "You helped save " + intent.getStringExtra("TOTAL_OYSTERS") + " oysters!"
     }
 
     override fun onMapReady(googleMap: GoogleMap) {

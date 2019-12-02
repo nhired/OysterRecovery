@@ -56,7 +56,7 @@ class SignUpActivity : AppCompatActivity() {
                 if (task.isSuccessful) {
                     // Sign in success, update UI with the signed-in user's information
                     Log.d(TAG, "createUserWithEmail:success")
-                    startActivity(Intent(this, MainActivity::class.java))
+                    startActivity(Intent(this, RouteActivity::class.java))
                     finish()
                 } else {
                     // If sign in fails, display a message to the user.

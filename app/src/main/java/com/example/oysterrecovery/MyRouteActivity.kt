@@ -110,8 +110,12 @@ class MyRouteActivity : AppCompatActivity() {
 
         // Pass selected information via extras to finishActivity intent
         fab.setOnClickListener {
-            val finishIntent =  Intent(this, RouteActivity::class.java)
-//            finishIntent.putExtra("totalCollected", "totalOysterCollected.toString()")
+            val finishIntent =  Intent(this, FinishActivity::class.java)
+            finishIntent.putExtra("TOTAL_OYSTERS", totalOysterCollected.toString())
+            finishIntent.putExtra("resOne", intent.getStringExtra("resOne"))
+            finishIntent.putExtra("resTwo", intent.getStringExtra("resTwo"))
+            finishIntent.putExtra("resThree", intent.getStringExtra("resThree"))
+            finishIntent.putExtra("resFour", intent.getStringExtra("resFour"))
             startActivity(finishIntent)
         }
 

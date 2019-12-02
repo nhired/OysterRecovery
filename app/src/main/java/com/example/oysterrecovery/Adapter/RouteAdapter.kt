@@ -91,6 +91,7 @@ class RouteAdapter(internal var context: Context) : RecyclerView.Adapter<RouteAd
             intent.putExtra("resOne", arr[0])
             intent.putExtra("resTwo", arr[1])
             intent.putExtra("resThree", arr[2])
+            intent.putExtra("resFour", "")
             context.startActivity(intent)
         }
         Log.d("What I'm sending", arr[0])
