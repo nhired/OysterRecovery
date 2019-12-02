@@ -60,11 +60,18 @@ class RouteAdapter(internal var context: Context) : RecyclerView.Adapter<RouteAd
                     list.add(restaurant)
                 }
 
+//                for(r in list) {
+//                    Log.d(TAG, r!!.name)
+//                }
+
                 val arr = routes[position].split(',')
 
-                val r1 = list.get(arr[0].toInt())
-                val r2 = list.get(arr[1].toInt())
-                val r3 = list.get(arr[2].toInt())
+                val r1 = list.get(arr[0].toInt() - 1)
+                Log.d("Restaurant name: ", r1!!.name)
+                val r2 = list.get(arr[1].toInt() - 1)
+                Log.d("Restaurant name: ", r2!!.name)
+                val r3 = list.get(arr[2].toInt() - 1)
+                Log.d("Restaurant name: ", r3!!.name)
 
                 holder.route.text = r1!!.name + " Route"
 
@@ -86,6 +93,9 @@ class RouteAdapter(internal var context: Context) : RecyclerView.Adapter<RouteAd
             intent.putExtra("resThree", arr[2])
             context.startActivity(intent)
         }
+        Log.d("What I'm sending", arr[0])
+        Log.d("What I'm sending", arr[1])
+        Log.d("What I'm sending", arr[2])
 
         Picasso.get().load(holder.imageUri).into(holder.ivBasicImage);
 

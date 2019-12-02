@@ -65,7 +65,7 @@
                             android:textColor="@color/royalBlue"
                             android:layout_marginStart="10dp"
                             android:paddingLeft="15dp"
-                            android:layout_marginTop="4dp"
+                            android:layout_marginTop="20dp"
                             android:text="restaurant2"
                          />
 

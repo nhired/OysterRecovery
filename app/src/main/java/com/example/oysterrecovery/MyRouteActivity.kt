@@ -143,7 +143,14 @@ class MyRouteActivity : AppCompatActivity() {
                  }
 
                 */
-                Log.d("Testing sending intent: ", intent.getStringExtra("resOne"))
+                Log.d("Testing sending intent1: ",intent.getStringExtra("resOne").toString())
+                Log.d("Testing sending intent2: ",intent.getStringExtra("resTwo").toString())
+                Log.d("Testing sending intent3: ",intent.getStringExtra("resThree").toString())
+
+                Log.d("Testing sending intent1: ",resList[intent.getStringExtra("resOne").toString()]!!.name)
+                Log.d("Testing sending intent2: ",resList[intent.getStringExtra("resTwo").toString()]!!.name)
+                Log.d("Testing sending intent3: ",resList[intent.getStringExtra("resThree").toString()]!!.name)
+
 
                 box1.text = resList[intent.getStringExtra("resOne").toString()]!!.name
                 //               intent.putExtra("resOne", resList["6"]!!.name)
