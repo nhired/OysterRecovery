@@ -19,9 +19,7 @@ import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 import kotlinx.android.synthetic.main.route_item.view.*
 
-class MyAdapter(internal var context: Context,  var list: ArrayList<Restaurant>): RecyclerView.Adapter<MyAdapter.MyViewHolder>() {
-
-
+class MyAdapter(internal var context: Context): RecyclerView.Adapter<MyAdapter.MyViewHolder>() {
 
     private var routeList: MutableList<String> = ArrayList()
 
@@ -55,7 +53,6 @@ class MyAdapter(internal var context: Context,  var list: ArrayList<Restaurant>)
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         holder.route.text = routeList[position]
-        holder.miles.text = "0.5"
 
 
         val routes = routeList[position]
@@ -64,8 +61,6 @@ class MyAdapter(internal var context: Context,  var list: ArrayList<Restaurant>)
         val id1 = arr[0]
         val id2 = arr[1]
         val id3 = arr[2]
-
-        Log.d(TAG, "size of res list = " + list.size)
 
        // holder.r1.text = resList.get(id1.toInt()).name
        // holder.r2.text = resList.get(id2.toInt()).name
@@ -94,14 +89,14 @@ class MyAdapter(internal var context: Context,  var list: ArrayList<Restaurant>)
 
      class MyViewHolder(itemView: View): RecyclerView.ViewHolder(itemView), View.OnClickListener {
          internal var route: TextView = itemView.findViewById(R.id.route_item)
-          internal var miles: TextView = itemView.findViewById(R.id.milesAway)
 
-         internal var r1: TextView = itemView.findViewById(R.id.restaurant1)
-         internal var r2: TextView = itemView.findViewById(R.id.restaurant2)
-         internal var r3: TextView = itemView.findViewById(R.id.restaurant3)
-         internal var r4: TextView = itemView.findViewById(R.id.restaurant4)
 
-         internal var layout: LinearLayout = itemView.findViewById(R.id.expandableLay)
+//         internal var r1: TextView = itemView.findViewById(R.id.restaurant1)
+//         internal var r2: TextView = itemView.findViewById(R.id.restaurant2)
+//         internal var r3: TextView = itemView.findViewById(R.id.restaurant3)
+//         internal var r4: TextView = itemView.findViewById(R.id.restaurant4)
+
+       //  internal var layout: LinearLayout = itemView.findViewById(R.id.expandableLay)
 
          init {
             itemView.setOnClickListener(this)

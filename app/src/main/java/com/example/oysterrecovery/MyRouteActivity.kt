@@ -22,7 +22,7 @@ class MyRouteActivity : AppCompatActivity() {
     companion object {
         val selectedRoute = "6,9,11"
         val TAG = "Debugging"
-   //     var restaurants = HashMap<String, Restaurant?>()
+        //     var restaurants = HashMap<String, Restaurant?>()
     }
 
     lateinit var box1:CheckBox
@@ -143,16 +143,18 @@ class MyRouteActivity : AppCompatActivity() {
                  }
 
                 */
-                box1.text = resList["6"]!!.name
-                intent.putExtra("resOne", resList["6"]!!.name)
-                box2.text = resList["9"]!!.name
+                Log.d("Testing sending intent: ", intent.getStringExtra("resOne"))
+
+                box1.text = resList[intent.getStringExtra("resOne").toString()]!!.name
+                //               intent.putExtra("resOne", resList["6"]!!.name)
+                box2.text = resList[intent.getStringExtra("resTwo").toString()]!!.name
 //                intent.putExtra("resTwo", resList["9"]!!.name)
-                box3.text = resList["11"]!!.name
+                box3.text = resList[intent.getStringExtra("resThree").toString()]!!.name
 //                intent.putExtra("resOne", resList["11"]!!.name)
 
-                oys1 += resList["6"]!!.oysterNumber.toInt()
-                oys2 += resList["9"]!!.oysterNumber.toInt()
-                oys3 += resList["11"]!!.oysterNumber.toInt()
+                oys1 += resList[intent.getStringExtra("resOne").toString()]!!.oysterNumber.toInt()
+                oys2 += resList[intent.getStringExtra("resTwo").toString()]!!.oysterNumber.toInt()
+                oys3 += resList[intent.getStringExtra("resThree").toString()]!!.oysterNumber.toInt()
 
 //                totalOysterCollected += resList["6"]!!.oysterNumber.toInt()
 //                totalOysterCollected +=  resList["9"]!!.oysterNumber.toInt()
@@ -175,9 +177,9 @@ class MyRouteActivity : AppCompatActivity() {
     private fun searchRestaurant(searchFor:String){
         val find = validURL(searchFor)
 //        Log.w(TAG, find)
-          var searchInt = Intent(Intent.ACTION_VIEW)
-          searchInt.data = Uri.parse(find)
-          startActivity(searchInt)
+        var searchInt = Intent(Intent.ACTION_VIEW)
+        searchInt.data = Uri.parse(find)
+        startActivity(searchInt)
     }
 
     private fun validURL(original:String): String{
