@@ -4,12 +4,12 @@
     <color name="colorPrimaryDark">#00574B</color>
     <color name="colorAccent">#D81B60</color>
     <color name="white">#ffffff</color>
+    <color name="z">#ffffff</color>
+
     <color name="transparent">#00000000</color>
     <color name="teal">#02AC9A</color>
     <color name="royalBlue">#0119A0</color>
     <color name="darkBlue">#02021B</color>
+    <color name="myBlue">#02021B</color>
     <color name="pink">#F16C7B</color>
-
-
-
 </resources>

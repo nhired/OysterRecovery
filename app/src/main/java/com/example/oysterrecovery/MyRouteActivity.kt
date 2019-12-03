@@ -4,8 +4,10 @@ import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import android.widget.CheckBox
 import android.widget.ImageButton
+import android.widget.LinearLayout
 import android.widget.TextView
 import com.google.android.material.snackbar.Snackbar
 import androidx.appcompat.app.AppCompatActivity
@@ -28,14 +30,19 @@ class MyRouteActivity : AppCompatActivity() {
     lateinit var box1:CheckBox
     lateinit var box2:CheckBox
     lateinit var box3:CheckBox
+    lateinit var box4:CheckBox
+    lateinit var row4:LinearLayout
+
     lateinit var collectedText:TextView
     lateinit var find1:ImageButton
     lateinit var find2:ImageButton
     lateinit var find3:ImageButton
+    lateinit var find4:ImageButton
 
     var oys1 = 0
     var oys2 = 0
     var oys3 = 0
+    var oys4 = 0
 
     var address1 = ""
     var address2 = ""
@@ -57,13 +64,16 @@ class MyRouteActivity : AppCompatActivity() {
         box1 = findViewById<CheckBox>(R.id.route1)
         box2 = findViewById<CheckBox>(R.id.route2)
         box3 = findViewById<CheckBox>(R.id.route3)
+        box4 = findViewById<CheckBox>(R.id.route4)
 
         collectedText = findViewById<TextView>(R.id.CollectedText)
 
         find1 = findViewById<ImageButton>(R.id.findRes1)
         find2 = findViewById<ImageButton>(R.id.findRes2)
         find3 = findViewById<ImageButton>(R.id.findRes3)
+        find4 = findViewById<ImageButton>(R.id.findRes4)
 
+        row4 = findViewById<LinearLayout>(R.id.row4)
 
         readRestaurants()
 
@@ -98,6 +108,16 @@ class MyRouteActivity : AppCompatActivity() {
             }
         }
 
+        box4.setOnClickListener {
+            if(box4.isChecked){
+                totalOysterCollected += oys4
+                collectedText.text = ((totalOysterCollected).toString() + " Oysters")
+            } else {
+                totalOysterCollected -= oys4
+                collectedText.text = ((totalOysterCollected).toString() + " Oysters")
+            }
+        }
+
         find1.setOnClickListener{
             searchRestaurant(box1.text.toString())
         }
@@ -106,6 +126,9 @@ class MyRouteActivity : AppCompatActivity() {
         }
         find3.setOnClickListener{
             searchRestaurant(box3.text.toString())
+        }
+        find4.setOnClickListener{
+            searchRestaurant(box4.text.toString())
         }
 
         // Pass selected information via extras to finishActivity intent
@@ -162,6 +185,13 @@ class MyRouteActivity : AppCompatActivity() {
 //                intent.putExtra("resTwo", resList["9"]!!.name)
                 box3.text = resList[intent.getStringExtra("resThree").toString()]!!.name
 //                intent.putExtra("resOne", resList["11"]!!.name)
+                try {
+                    box4.text = resList[intent.getStringExtra("resFour").toString()]!!.name
+                    //intent.putExtra("resOne", resList["11"]!!.name)
+                    oys4 += resList[intent.getStringExtra("resFour").toString()]!!.oysterNumber.toInt()
+                }catch (e: KotlinNullPointerException ){
+                    row4.visibility = View.INVISIBLE
+                }
 
                 oys1 += resList[intent.getStringExtra("resOne").toString()]!!.oysterNumber.toInt()
                 oys2 += resList[intent.getStringExtra("resTwo").toString()]!!.oysterNumber.toInt()
