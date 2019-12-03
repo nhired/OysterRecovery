@@ -47,9 +47,12 @@ class MyRouteActivity : AppCompatActivity() {
     var address1 = ""
     var address2 = ""
     var address3 = ""
+    var address4 = ""
 
 
     var totalOysterCollected = 0
+
+    var completedRoutes:ArrayList<String> = ArrayList()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -59,6 +62,8 @@ class MyRouteActivity : AppCompatActivity() {
 
         // Set the outside toolbar (on top)
         setSupportActionBar(toolbar)
+
+        val finishIntent =  Intent(this, FinishActivity::class.java)
 
         // Populate hash of resId's to resNames (assuming needed route is provided via extra)
         box1 = findViewById<CheckBox>(R.id.route1)
@@ -82,9 +87,11 @@ class MyRouteActivity : AppCompatActivity() {
             if(box1.isChecked){
                 totalOysterCollected += oys1
                 collectedText.text = ((totalOysterCollected).toString() + " Oysters")
+                finishIntent.putExtra("resOne", intent.getStringExtra("resOne"))
             } else {
                 totalOysterCollected -= oys1
                 collectedText.text = ((totalOysterCollected).toString() + " Oysters")
+                finishIntent.putExtra("resOne", "")
             }
         }
 
@@ -92,9 +99,11 @@ class MyRouteActivity : AppCompatActivity() {
             if(box2.isChecked){
                 totalOysterCollected += oys2
                 collectedText.text = ((totalOysterCollected).toString() + " Oysters")
+                finishIntent.putExtra("resTwo", intent.getStringExtra("resTwo"))
             } else {
                 totalOysterCollected -= oys2
                 collectedText.text = ((totalOysterCollected).toString() + " Oysters")
+                finishIntent.putExtra("resTwo", "")
             }
         }
 
@@ -102,9 +111,11 @@ class MyRouteActivity : AppCompatActivity() {
             if(box3.isChecked){
                 totalOysterCollected += oys3
                 collectedText.text = ((totalOysterCollected).toString() + " Oysters")
+                finishIntent.putExtra("resThree", intent.getStringExtra("resThree"))
             } else {
                 totalOysterCollected -= oys3
                 collectedText.text = ((totalOysterCollected).toString() + " Oysters")
+                finishIntent.putExtra("resThree", "")
             }
         }
 
@@ -112,9 +123,11 @@ class MyRouteActivity : AppCompatActivity() {
             if(box4.isChecked){
                 totalOysterCollected += oys4
                 collectedText.text = ((totalOysterCollected).toString() + " Oysters")
+                finishIntent.putExtra("resFour", intent.getStringExtra("resFour"))
             } else {
                 totalOysterCollected -= oys4
                 collectedText.text = ((totalOysterCollected).toString() + " Oysters")
+                finishIntent.putExtra("resFour", "")
             }
         }
 
@@ -133,12 +146,8 @@ class MyRouteActivity : AppCompatActivity() {
 
         // Pass selected information via extras to finishActivity intent
         fab.setOnClickListener {
-            val finishIntent =  Intent(this, FinishActivity::class.java)
             finishIntent.putExtra("TOTAL_OYSTERS", totalOysterCollected.toString())
-            finishIntent.putExtra("resOne", intent.getStringExtra("resOne"))
-            finishIntent.putExtra("resTwo", intent.getStringExtra("resTwo"))
-            finishIntent.putExtra("resThree", intent.getStringExtra("resThree"))
-            finishIntent.putExtra("resFour", intent.getStringExtra("resFour"))
+            removeRoutes()
             startActivity(finishIntent)
         }
 
@@ -181,14 +190,19 @@ class MyRouteActivity : AppCompatActivity() {
 
                 box1.text = resList[intent.getStringExtra("resOne").toString()]!!.name
                 //               intent.putExtra("resOne", resList["6"]!!.name)
+                address1 = resList[intent.getStringExtra("resOne").toString()]!!.address
                 box2.text = resList[intent.getStringExtra("resTwo").toString()]!!.name
 //                intent.putExtra("resTwo", resList["9"]!!.name)
+                address2 = resList[intent.getStringExtra("resTwo").toString()]!!.address
                 box3.text = resList[intent.getStringExtra("resThree").toString()]!!.name
 //                intent.putExtra("resOne", resList["11"]!!.name)
+                address3 = resList[intent.getStringExtra("resThree").toString()]!!.address
+
                 try {
                     box4.text = resList[intent.getStringExtra("resFour").toString()]!!.name
                     //intent.putExtra("resOne", resList["11"]!!.name)
                     oys4 += resList[intent.getStringExtra("resFour").toString()]!!.oysterNumber.toInt()
+                    address4 = resList[intent.getStringExtra("resFour").toString()]!!.address
                 }catch (e: KotlinNullPointerException ){
                     row4.visibility = View.INVISIBLE
                 }
@@ -234,6 +248,27 @@ class MyRouteActivity : AppCompatActivity() {
             }
         }
         return urlBase
+    }
+
+    private fun removeRoutes(){
+        if(box1.isChecked && box2.isChecked && box3.isChecked){
+            val mRoutes = FirebaseDatabase.getInstance().getReference("routes")
+            mRoutes.addValueEventListener(object : ValueEventListener {
+                override fun onDataChange(dataSnapshot: DataSnapshot) {
+                    for(snapshot in dataSnapshot.children) {
+                        if(snapshot.getValue<String>(String::class.java)!!.contains(intent.getStringExtra("resOne"))){
+                            snapshot.ref.removeValue()
+                            break;
+                        }
+                    }
+                }
+
+                override fun onCancelled(p0: DatabaseError) {
+                    // Required
+                }
+            })
+
+        }
     }
 
 }

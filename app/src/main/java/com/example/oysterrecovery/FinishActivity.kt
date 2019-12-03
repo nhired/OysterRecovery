@@ -31,8 +31,8 @@ class FinishActivity : AppCompatActivity(), OnMapReadyCallback {
 
         button4.setOnClickListener {
             //Calls reoptimize, then resets back to routes
-            optimizeRoutes()
-            val int =  Intent(this, MainActivity::class.java)
+            //optimizeRoutes()
+            val int =  Intent(this, RouteActivity::class.java)
             startActivity(int)
         }
         //Retrieve oyster count from intent, uncomment when merging.
