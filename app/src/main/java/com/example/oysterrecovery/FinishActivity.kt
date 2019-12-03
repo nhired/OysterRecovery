@@ -1,16 +1,19 @@
 package com.example.oysterrecovery
 
 import android.content.Intent
+import android.location.Geocoder
+import android.location.Address
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import android.util.Log
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
+import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.ValueEventListener
 
 import kotlinx.android.synthetic.main.activity_finish.*
 import kotlinx.android.synthetic.main.content_finish.*
@@ -22,14 +25,13 @@ class FinishActivity : AppCompatActivity(), OnMapReadyCallback {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_finish)
         setSupportActionBar(toolbar)
-        Log.w("Debugging", intent.getStringExtra("resOne"))
         getSupportActionBar()?.hide()
         val mapFragment = getSupportFragmentManager().findFragmentById(R.id.map) as SupportMapFragment
         mapFragment?.getMapAsync(this)
 
         button4.setOnClickListener {
             //Calls reoptimize, then resets back to routes
-            optimizeRoutes()
+            //optimizeRoutes()
             val int =  Intent(this, RouteActivity::class.java)
             startActivity(int)
         }
@@ -46,6 +48,17 @@ class FinishActivity : AppCompatActivity(), OnMapReadyCallback {
 //            mMap.addMarker(MarkerOptions().position(LatLng(38.97, -76.49)).title(rest)).showInfoWindow()
 //        }
         // Add a marker in annapolis and move the camera
+
+        val geocoder = Geocoder(this)
+        val addresses:List<Address>
+        addresses = geocoder.getFromLocationName("37 West St, Annapolis, MD 21401", 1)
+        if (addresses.isNotEmpty())
+        {
+            val latitude = addresses.get(0).getLatitude()
+            val longitude = addresses.get(0).getLongitude()
+            mMap.addMarker(MarkerOptions().position(LatLng(latitude,longitude)).title("Stan & Joes Saloon West")).showInfoWindow()
+        }
+
         val anna = LatLng(38.97, -76.49)
         val anna2 = LatLng(38.99, -76.50)
         val anna3 = LatLng(38.95,-76.51)
@@ -60,12 +73,20 @@ class FinishActivity : AppCompatActivity(), OnMapReadyCallback {
 
     fun optimizeRoutes() {
         //Read in completed routes
-        val routes = FirebaseDatabase.getInstance().getReference("restaurants")
+        val routes = FirebaseDatabase.getInstance().getReference("routes")
+
+//        routes.addValueEventListener(object : ValueEventListener {
+//            override fun onDataChange(dataSnapshot: DataSnapshot) {
+//                for (keyNode in dataSnapshot.children) {
+//                }
+//            }
+//        }
         var rList = intent.getStringArrayListExtra("COMPLETED_ROUTES")
         //Case 1: All routes completed
         if(rList!!.size == 3){
             //Remove route from firebase
             //snapshot
+
         }else if(rList!!.size == 1){
             //Case 2: 1 Route is Completed
             //Remove completed route, update route entry in fb
