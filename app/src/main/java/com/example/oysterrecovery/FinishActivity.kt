@@ -123,13 +123,16 @@ class FinishActivity : AppCompatActivity(), OnMapReadyCallback {
         //Read in completed routes
         val routes = FirebaseDatabase.getInstance().getReference("routes")
         val rests = FirebaseDatabase.getInstance().getReference("restaurants")
+        var end = false
         routes.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
 
                 //Find routeID
                 var routeID = "200"
                 for (keyNode in dataSnapshot.children) {
-
+                    if(end) {
+                        break
+                    }
                     //textView4.text = keyNode.value.toString()
                     val c = keyNode.value as String
                     // h holds all restIDS in the route
@@ -138,6 +141,7 @@ class FinishActivity : AppCompatActivity(), OnMapReadyCallback {
                     if(h.contains(rList.first())){
                         //Found the route
                         routeID = keyNode.key as String
+                        val origRoute = keyNode.value.toString()
                         if(rList.size == 1) {
                             var toRet = ""
                             for(rest in h) {
@@ -149,6 +153,7 @@ class FinishActivity : AppCompatActivity(), OnMapReadyCallback {
                             //Gets rid of last comma
                             routes.child(routeID).setValue(toRet)
                             //textView4.text = toRet
+                            end = true
                             break;
 
                         }else if(rList.size == 2) {
@@ -160,18 +165,23 @@ class FinishActivity : AppCompatActivity(), OnMapReadyCallback {
                             }
                             //This is the only restuarant not in a route now.
                             toRet = toRet.dropLast(1)
-                            routes.child(routeID).removeValue()
 
                             //Get current rest location
                             val rest = resList.get(toRet)
+                            //textView4.text = rest?.address.toString()
                             val geocoder = Geocoder(this@FinishActivity)
-                            val restLocation = geocoder.getFromLocationName(rest!!.address,1)
+                            val restLocation = geocoder.getFromLocationName(rest?.address.toString(),1)
 
                             var min = 1000f;
                             var minID = "";
 
+                            var holder2 = origRoute.split(",")
+
+
+                            val listo = listOf<String>(holder2[0],holder2[1],holder2[2])
+
                             for(entry in resList) {
-                                if(!rList.contains(entry.key)){
+                                if(!listo.contains(entry.key)){
                                     val latitude = restLocation[0].latitude
                                     val longitude = restLocation[0].longitude
 
@@ -196,11 +206,13 @@ class FinishActivity : AppCompatActivity(), OnMapReadyCallback {
                                 val hold = values.split(",")
                                 if(hold.contains(minID)) {
                                     routes.child(kn.key as String).setValue(kn.value.toString() + "," + toRet)
+                                    end = true;
+                                    //TODO:ONLY UNCOMMENT DURING DEMO
+                                    //routes.child(routeID).removeValue()
                                     break;
                                 }
 
                             }
-                            //Figure out which route has a closest neighbor
                         }
 //                        routeID = keyNode.key as String
 //

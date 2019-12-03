@@ -68,14 +68,16 @@ class RouteAdapter(internal var context: Context) : RecyclerView.Adapter<RouteAd
 
                 val r1 = list.get(arr[0].toInt() - 1)
                 val r2 = list.get(arr[1].toInt() - 1)
-                val r3 = list.get(arr[2].toInt() - 1)
-
+                if(arr.size > 2){
+                    val r3 = list.get(arr[2].toInt() - 1)
+                    holder.r3.text = r3!!.name
+                }else{
+                    holder.r3.text = ""
+                }
                 holder.route.text = r1!!.name + " Route"
 
                 holder.r1.text = r1!!.name
                 holder.r2.text = r2!!.name
-                holder.r3.text = r3!!.name
-
                 if(arr.size == 4) {
                     val r4 = list.get(arr[3].toInt() - 1)
                     holder.r4.text = r4!!.name
