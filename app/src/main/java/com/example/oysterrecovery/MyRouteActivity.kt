@@ -199,10 +199,12 @@ class MyRouteActivity : AppCompatActivity() {
                 address3 = resList[intent.getStringExtra("resThree").toString()]!!.address
 
                 try {
-                    box4.text = resList[intent.getStringExtra("resFour").toString()]!!.name
-                    //intent.putExtra("resOne", resList["11"]!!.name)
-                    oys4 += resList[intent.getStringExtra("resFour").toString()]!!.oysterNumber.toInt()
-                    address4 = resList[intent.getStringExtra("resFour").toString()]!!.address
+                    if(!intent.getStringExtra("resFour").toString().equals("")){
+                        box4.text = resList[intent.getStringExtra("resFour").toString()]!!.name
+                        //intent.putExtra("resOne", resList["11"]!!.name)
+                        oys4 += resList[intent.getStringExtra("resFour").toString()]!!.oysterNumber.toInt()
+                        address4 = resList[intent.getStringExtra("resFour").toString()]!!.address
+                    }
                 }catch (e: KotlinNullPointerException ){
                     row4.visibility = View.INVISIBLE
                 }
@@ -255,8 +257,13 @@ class MyRouteActivity : AppCompatActivity() {
             val mRoutes = FirebaseDatabase.getInstance().getReference("routes")
             mRoutes.addValueEventListener(object : ValueEventListener {
                 override fun onDataChange(dataSnapshot: DataSnapshot) {
+                    var totalString = ""
+                    totalString += intent.getStringExtra("resOne") + "," + intent.getStringExtra("resTwo") + "," + intent.getStringExtra("resThree")
+                    if(!intent.getStringExtra("resFour").toString().equals("")){
+                        totalString += "," + intent.getStringExtra("resFour")
+                    }
                     for(snapshot in dataSnapshot.children) {
-                        if(snapshot.getValue<String>(String::class.java)!!.contains(intent.getStringExtra("resOne"))){
+                        if(snapshot.getValue<String>(String::class.java)!!.equals(totalString)){
                             snapshot.ref.removeValue()
                             break;
                         }

@@ -67,23 +67,27 @@ class RouteAdapter(internal var context: Context) : RecyclerView.Adapter<RouteAd
                 val arr = routes[position].split(',')
 
                 val r1 = list.get(arr[0].toInt() - 1)
-                Log.d("Restaurant name: ", r1!!.name)
                 val r2 = list.get(arr[1].toInt() - 1)
-                Log.d("Restaurant name: ", r2!!.name)
                 val r3 = list.get(arr[2].toInt() - 1)
-                Log.d("Restaurant name: ", r3!!.name)
 
                 holder.route.text = r1!!.name + " Route"
 
                 holder.r1.text = r1!!.name
                 holder.r2.text = r2!!.name
                 holder.r3.text = r3!!.name
-                holder.r4.text = ""
 
+                if(arr.size == 4) {
+                    val r4 = list.get(arr[3].toInt() - 1)
+                    holder.r4.text = r4!!.name
+                } else {
+                    holder.r4.text = ""
+
+                }
 
             }
 
         })
+
 
         val arr = routes[position].split(',')
         holder.btn.setOnClickListener{
@@ -91,12 +95,16 @@ class RouteAdapter(internal var context: Context) : RecyclerView.Adapter<RouteAd
             intent.putExtra("resOne", arr[0])
             intent.putExtra("resTwo", arr[1])
             intent.putExtra("resThree", arr[2])
-            intent.putExtra("resFour", "")
+
+            if(arr.size == 4) {
+                intent.putExtra("resFour", arr[3])
+            } else {
+                intent.putExtra("resFour", "")
+
+            }
+
             context.startActivity(intent)
         }
-        Log.d("What I'm sending", arr[0])
-        Log.d("What I'm sending", arr[1])
-        Log.d("What I'm sending", arr[2])
 
         Picasso.get().load(holder.imageUri).into(holder.ivBasicImage);
 
