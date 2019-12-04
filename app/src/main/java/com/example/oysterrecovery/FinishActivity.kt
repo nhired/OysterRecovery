@@ -21,8 +21,6 @@ import kotlinx.android.synthetic.main.content_finish.*
 import com.google.firebase.database.DatabaseError
 
 
-
-
 class FinishActivity : AppCompatActivity(), OnMapReadyCallback {
     private lateinit var mMap: GoogleMap
     private var rList = mutableListOf<String>()
@@ -31,11 +29,8 @@ class FinishActivity : AppCompatActivity(), OnMapReadyCallback {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_finish)
-        setSupportActionBar(toolbar)
-        getSupportActionBar()?.hide()
         val mapFragment = getSupportFragmentManager().findFragmentById(R.id.map) as SupportMapFragment
         mapFragment?.getMapAsync(this)
-
 
         //Initialize rList
 
@@ -79,15 +74,8 @@ class FinishActivity : AppCompatActivity(), OnMapReadyCallback {
 
                 for (keyNode in dataSnapshot.children) {
                     //As long as they're not in the same route, add the address to the aList
-//                    if(!rList.contains(keyNode.key)){
-//                        aList.add(keyNode.child("address").value.toString())
-//                    }
-
 
                     if(rList.contains(keyNode.key)){
-                        //textView4.text = intent.getStringExtra("resOne")
-                        //"3,2,14"
-                        //rests.child("1").setValue("3,2,14")
                         val addresses:List<Address> = geocoder.getFromLocationName(keyNode.child("address").value.toString(), 1)
                         if (addresses.isNotEmpty())
                         {
@@ -108,11 +96,6 @@ class FinishActivity : AppCompatActivity(), OnMapReadyCallback {
 
 
         val anna = LatLng(38.97, -76.49)
-//        val anna2 = LatLng(38.99, -76.50)
-//        val anna3 = LatLng(38.95,-76.51)
-//        mMap.addMarker(MarkerOptions().position(anna).title("Oyster City")).showInfoWindow()
-//        mMap.addMarker(MarkerOptions().position(anna2).title("Shell Shack"))
-//        mMap.addMarker(MarkerOptions().position(anna3).title("Joe's Oysters"))
         mMap.moveCamera(CameraUpdateFactory.newLatLng(anna))
 
         mMap.setMinZoomPreference(12.0f)
@@ -214,26 +197,8 @@ class FinishActivity : AppCompatActivity(), OnMapReadyCallback {
 
                             }
                         }
-//                        routeID = keyNode.key as String
-//
-//                        textView4.text = routeID
                     }
                 }
-
-//                if(rList.size == 1) {
-//                    //Delete the completed place, leave the rest
-//                }else if(rList.size == 2) {
-//                    //Check each route to find one that is less than X meters away and add, if can't find, use MIN
-//                    for (keyNode in dataSnapshot.children) {
-//                        if(keyNode.key == "1"){
-//                            //textView4.text = keyNode.value.toString()
-//                            //"3,2,14"
-//                            //routes.child("1").setValue("3,2,14")
-//
-//
-//                        }
-//                    }
-//                }
             }
 
             override fun onCancelled(databaseError: DatabaseError) {
@@ -241,18 +206,7 @@ class FinishActivity : AppCompatActivity(), OnMapReadyCallback {
             }
         })
 
-        //Case 1: All routes completed
-//        if(rList!!.size == 3){
-//            //Remove route from firebase
-//            //snapshot
-//
-//        }else if(rList!!.size == 1){
-//            //Case 2: 1 Route is Completed
-//            //Remove completed route, update route entry in fb
-//        }else if(rList!!.size == 2) {
-//            //Case 3: Add the remaining route to nearest cluster
-//
-//        }
+
     }
 
 }

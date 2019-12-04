@@ -4,24 +4,29 @@ package com.example.oysterrecovery
 import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.Toolbar
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.oysterrecovery.Adapter.RouteAdapter
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
+import kotlinx.android.synthetic.main.activity_my_route.*
 import kotlinx.android.synthetic.main.activity_route.*
-
 
 class RouteActivity : AppCompatActivity() {
 
     private lateinit var linearLayoutManager: LinearLayoutManager
     private lateinit var adapter: RouteAdapter
-    private var routeList: ArrayList<Route> = ArrayList()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_route)
+
+        //setSupportActionBar(toolbar)
+//        val toolbar: Toolbar = findViewById(R.id.toolbar)
+//        setSupportActionBar(toolbar);
+//        toolbar!!.title = "Active Routes"
 
         linearLayoutManager = LinearLayoutManager(this)
         recyclerView.layoutManager = linearLayoutManager
@@ -30,18 +35,11 @@ class RouteActivity : AppCompatActivity() {
         recyclerView.adapter = adapter
 
         Log.d(TAG, "Entered beginning method!!!111")
+        requestRoutes()
 
-    }
-
-    override fun onStart() {
-        super.onStart()
-        if (routeList.size == 0) {
-            requestRoutes()
-        }
     }
 
     private fun requestRoutes() {
-        Log.d(TAG, "Entered begining of request routes")
         val database = FirebaseDatabase.getInstance()
         val ref = database.getReference("routes")
 
@@ -54,11 +52,11 @@ class RouteActivity : AppCompatActivity() {
                 val routeList = ArrayList<String>()
 
                 for(snapshot in dataSnapshot.children) {
+                    Log.d("Testing the key of the route", snapshot.key)
                     routeList.add(snapshot.getValue<String>(String::class.java)!!)
                 }
 
                 adapter.addAll(routeList)
-
             }
 
             override fun onCancelled(databaseError: DatabaseError) {

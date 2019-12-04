@@ -1,160 +1,179 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MyRouteActivity">
 
-    <com.google.android.material.appbar.AppBarLayout
+    <RelativeLayout
+        android:id="@+id/constraintLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:theme="@style/AppTheme.AppBarOverlay">
-
-        <androidx.appcompat.widget.Toolbar
-            android:id="@+id/toolbar"
-            android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
-            android:background="?attr/colorPrimary"
-            app:popupTheme="@style/AppTheme.PopupOverlay" />
-
-    </com.google.android.material.appbar.AppBarLayout>
-
-<!--    <include layout="@layout/content_my_route" />-->
-
-<!--    <com.google.android.material.floatingactionbutton.FloatingActionButton-->
-<!--        android:id="@+id/fab"-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:layout_gravity="bottom|end"-->
-<!--        android:layout_margin="@dimen/fab_margin"-->
-<!--        app:srcCompat="@android:drawable/ic_menu_directions" />-->
-
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
         app:layout_behavior="@string/appbar_scrolling_view_behavior"
         tools:context=".MyRouteActivity"
+        android:background="@color/darkBlue"
         tools:showIn="@layout/activity_my_route">
+
+
+            <ImageView
+                android:id="@+id/image"
+                app:srcCompat="@mipmap/ic_launcher_foreground"
+                android:layout_width="match_parent"
+                android:layout_height="80dp"
+                >
+            </ImageView>
+
         <RelativeLayout
+            android:background="@color/white"
+           android:layout_below="@id/image"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" >
+            android:layout_height="match_parent">
 
             <!-- Title -->
 
             <LinearLayout
-                android:layout_width="358dp"
-                android:layout_height="645dp"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
                 android:orientation="vertical">
 
                 <TextView
-                    android:id="@+id/TitleLabel"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
-                    android:fontFamily="sans-serif-medium"
-                    android:text="My Routes"
-                    android:textAppearance="?android:attr/textAppearanceLarge"
-                    android:textSize="22sp"></TextView>
 
-                <TextView
                     android:id="@+id/ToDoLabel"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
                     android:layout_marginTop="8dp"
                     android:fontFamily="sans-serif-medium"
-                    android:text="ToDo"
-                    android:textAppearance="?android:attr/textAppearanceLarge" />
+                    android:text="TODO"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:textColor="@color/darkBlue"
+                    android:textSize="25dp" />
 
-                <LinearLayout
-                    android:layout_width="wrap_content"
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
                     android:orientation="horizontal">
 
                     <CheckBox
                         android:id="@+id/route1"
                         android:layout_width="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:textSize="20dp"
+                        android:textStyle="bold"
                         android:layout_height="wrap_content"
                         android:fontFamily="sans-serif-medium"
                         android:text="@string/route1txt"
                         android:textAppearance="?android:attr/textAppearanceMedium"
-                        android:textColor="@color/myBlue" />
+                        android:textColor="@color/grey" />
+
 
                     <ImageButton
+                        android:layout_toRightOf="@+id/route1"
+                        android:background="@color/blue"
                         android:id="@+id/findRes1"
                         android:layout_width="30dp"
                         android:layout_height="30dp"
-                        android:layout_marginLeft="15dp"
-                        android:src="@android:drawable/ic_dialog_map"></ImageButton>
+                        android:layout_marginLeft="13dp"
+                        android:src="@android:drawable/ic_dialog_map">
+                    </ImageButton>
 
-                </LinearLayout>
+                </RelativeLayout>
 
                 <LinearLayout
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content">
 
                     <CheckBox
                         android:id="@+id/route2"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginTop="10dp"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:checked="false"
+                        android:textSize="20dp"
                         android:fontFamily="sans-serif-medium"
                         android:text="@string/route2txt"
                         android:textAppearance="?android:attr/textAppearanceMedium"
-                        android:textColor="@color/myBlue" />
+                        android:textStyle="bold"
+
+                        android:textColor="@color/grey"/>
 
                     <ImageButton
                         android:id="@+id/findRes2"
                         android:layout_width="30dp"
+                        android:background="@color/blue"
                         android:layout_height="30dp"
-                        android:layout_marginLeft="15dp"
-                        android:src="@android:drawable/ic_dialog_map"></ImageButton>
+                        android:layout_marginLeft="13dp"
+                        android:src="@android:drawable/ic_dialog_map">
+
+                    </ImageButton>
                 </LinearLayout>
 
-                <LinearLayout
-                    android:layout_width="wrap_content"
+                <RelativeLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content">
 
                     <CheckBox
                         android:id="@+id/route3"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginTop="10dp"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:checked="false"
+                        android:textSize="20dp"
                         android:fontFamily="sans-serif-medium"
-                        android:text="@string/route3txt"
+                        android:text="@string/route2txt"
                         android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:textStyle="bold"
 
-                        android:textColor="@color/myBlue" />
+                        android:textColor="@color/grey" />
+
 
                     <ImageButton
+                        android:layout_toRightOf="@+id/route3"
+                        android:background="@color/blue"
                         android:id="@+id/findRes3"
                         android:layout_width="30dp"
                         android:layout_height="30dp"
-                        android:layout_marginLeft="15dp"
-                        android:src="@android:drawable/ic_dialog_map"></ImageButton>
-                </LinearLayout>
+                        android:layout_marginLeft="13dp"
+                        android:src="@android:drawable/ic_dialog_map">
+
+                    </ImageButton>
+                </RelativeLayout>
 
                 <LinearLayout
                     android:id="@+id/row4"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    >
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
 
                     <CheckBox
                         android:id="@+id/route4"
                         android:layout_width="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:textStyle="bold"
                         android:layout_height="wrap_content"
                         android:background="@drawable/border"
                         android:fontFamily="sans-serif-medium"
+                        android:layout_marginLeft="10dp"
+                        android:textSize="20dp"
                         android:text="@string/route3txt"
                         android:textAppearance="?android:attr/textAppearanceMedium"
-                        android:textColor="@color/myBlue" />
+                        android:textColor="@color/grey" />
+
 
                     <ImageButton
+                        android:layout_toRightOf="@+id/route4"
+                        android:background="@color/blue"
                         android:id="@+id/findRes4"
                         android:layout_width="30dp"
                         android:layout_height="30dp"
-                        android:layout_marginLeft="15dp"
-                        android:src="@android:drawable/ic_dialog_map"></ImageButton>
+                        android:layout_marginLeft="13dp"
+                        android:src="@android:drawable/ic_dialog_map">
+                    </ImageButton>
                 </LinearLayout>
 
                 <TextView
@@ -162,18 +181,28 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
+                    android:layout_marginLeft="10dp"
+                    android:textSize="25dp"
                     android:fontFamily="sans-serif-medium"
                     android:text="Collected"
+                    android:textColor="@color/darkBlue"
                     android:textAppearance="?android:attr/textAppearanceLarge"></TextView>
 
                 <TextView
                     android:id="@+id/CollectedText"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
                     android:layout_marginTop="8dp"
+                    android:layout_marginBottom="30dp"
                     android:fontFamily="sans-serif-medium"
+                    android:textSize="17dp"
+                    android:textColor="@color/teal"
+                    android:textStyle="bold"
                     android:text="438 Clams"
-                    android:textAppearance="?android:attr/textAppearanceMedium"></TextView>
+                    android:textAppearance="?android:attr/textAppearanceSmall">
+
+                </TextView>
 
                 <TextView
                     android:id="@+id/DestinationText"
@@ -181,44 +210,57 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
                     android:fontFamily="sans-serif-medium"
+
+
+                    android:layout_marginLeft="10dp"
+                    android:textColor="@color/darkBlue"
+                    android:textSize="25dp"
                     android:text="Drop-Off Destination"
-                    android:textAppearance="?android:attr/textAppearanceLarge"></TextView>
+                    android:textAppearance="?android:attr/textAppearanceLarge">
+
+                </TextView>
 
                 <TextView
                     android:id="@+id/DropOff"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:textStyle="bold"
+                    android:layout_marginLeft="10dp"
+                    android:textSize="17dp"
+                    android:textColor="@color/grey"
                     android:layout_marginTop="8dp"
                     android:fontFamily="sans-serif-medium"
                     android:text="ORP-Site A"
-                    android:textAppearance="?android:attr/textAppearanceMedium"></TextView>
+
+                    android:textAppearance="?android:attr/textAppearanceMedium"/>
+
+                </LinearLayout>
 
                 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
                     android:id="@+id/RelativeLayout01"
-                    android:layout_width="fill_parent"
+                    android:layout_width="match_parent"
+                    android:layout_marginTop="400dp"
                     android:layout_height="wrap_content">
 
                     <Button
                         android:id="@+id/fab"
-                        android:layout_width="120dp"
-                        android:layout_height="60dp"
+                        android:layout_width="300dp"
+                        android:layout_height="50dp"
                         android:layout_below="@+id/restaurant4"
                         android:layout_centerInParent="true"
                         android:layout_marginStart="10dp"
-                        android:layout_marginTop="20dp"
-                        android:layout_marginBottom="10dp"
+                        android:layout_marginTop="380dp"
                         android:background="@drawable/fill_btn"
                         android:fontFamily="sans-serif-medium"
-                        android:text="Finish Route"
+                        android:text="Complete Route"
                         android:textAlignment="center"
                         android:textAllCaps="false"
                         android:textColor="@color/white"
                         android:textSize="16sp" />
-
                 </RelativeLayout>
-            </LinearLayout>
 
+            </RelativeLayout>
         </RelativeLayout>
-    </androidx.constraintlayout.widget.ConstraintLayout>
+
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

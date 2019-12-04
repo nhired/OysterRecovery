@@ -13,7 +13,6 @@ import android.widget.ImageView
 import android.widget.RelativeLayout
 import android.widget.TextView
 import androidx.cardview.widget.CardView
-import androidx.core.content.ContextCompat.startActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.example.oysterrecovery.*
 import com.google.firebase.database.DataSnapshot
@@ -24,7 +23,6 @@ import com.squareup.picasso.Picasso
 
 
 class RouteAdapter(internal var context: Context) : RecyclerView.Adapter<RouteAdapter.RouteHolder>() {
-
 
     private var routes: MutableList<String> = ArrayList()
 
@@ -60,20 +58,21 @@ class RouteAdapter(internal var context: Context) : RecyclerView.Adapter<RouteAd
                     list.add(restaurant)
                 }
 
-//                for(r in list) {
-//                    Log.d(TAG, r!!.name)
-//                }
 
                 val arr = routes[position].split(',')
 
                 val r1 = list.get(arr[0].toInt() - 1)
                 val r2 = list.get(arr[1].toInt() - 1)
+
                 if(arr.size > 2){
                     val r3 = list.get(arr[2].toInt() - 1)
                     holder.r3.text = r3!!.name
                 }else{
                     holder.r3.text = ""
                 }
+
+                val r3 = list.get(arr[2].toInt() - 1)
+
                 holder.route.text = r1!!.name + " Route"
 
                 holder.r1.text = r1!!.name
@@ -109,10 +108,6 @@ class RouteAdapter(internal var context: Context) : RecyclerView.Adapter<RouteAd
         }
 
         Picasso.get().load(holder.imageUri).into(holder.ivBasicImage);
-
-
-
-
     }
 
 
@@ -141,7 +136,6 @@ class RouteAdapter(internal var context: Context) : RecyclerView.Adapter<RouteAd
 
         }
 
-        //4
         override fun onClick(v: View) {
             if(relativelay.visibility == View.GONE) {
                 TransitionManager.beginDelayedTransition(card, AutoTransition())
@@ -150,8 +144,6 @@ class RouteAdapter(internal var context: Context) : RecyclerView.Adapter<RouteAd
                 TransitionManager.beginDelayedTransition(card, AutoTransition())
                 relativelay.visibility = View.GONE
             }
-
-
         }
 
     }

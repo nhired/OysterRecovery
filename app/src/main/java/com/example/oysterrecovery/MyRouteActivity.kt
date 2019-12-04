@@ -4,6 +4,7 @@ import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import android.util.Log
+import android.view.Menu
 import android.view.View
 import android.widget.CheckBox
 import android.widget.ImageButton
@@ -61,7 +62,7 @@ class MyRouteActivity : AppCompatActivity() {
         setContentView(R.layout.activity_my_route)
 
         // Set the outside toolbar (on top)
-        setSupportActionBar(toolbar)
+       // setSupportActionBar(toolbar)
 
         val finishIntent =  Intent(this, FinishActivity::class.java)
 
@@ -151,10 +152,6 @@ class MyRouteActivity : AppCompatActivity() {
             startActivity(finishIntent)
         }
 
-//        button2.setOnClickListener{
-//            val int =  Intent(this, MainActivity::class.java)
-//            startActivity(int)
-//        }
     }
 
     private fun readRestaurants(){
@@ -166,27 +163,6 @@ class MyRouteActivity : AppCompatActivity() {
                     val restaurant = keyNode.getValue<Restaurant>(Restaurant::class.java)
                     resList.put(keyNode.key!!, restaurant)
                 }
-
-                /* Pseudocode:
-
-                 if(three == true){
-                      for(route in threeRoutes){
-                          String resID = getIntent().getStringExtra("res1");
-                          findTextViewById.setText(restaurants.get(resID).name)
-                      }
-                 } else {
-                      // Do the same for four restaurants in route
-                 }
-
-                */
-                Log.d("Testing sending intent1: ",intent.getStringExtra("resOne").toString())
-                Log.d("Testing sending intent2: ",intent.getStringExtra("resTwo").toString())
-                Log.d("Testing sending intent3: ",intent.getStringExtra("resThree").toString())
-
-                Log.d("Testing sending intent1: ",resList[intent.getStringExtra("resOne").toString()]!!.name)
-                Log.d("Testing sending intent2: ",resList[intent.getStringExtra("resTwo").toString()]!!.name)
-                Log.d("Testing sending intent3: ",resList[intent.getStringExtra("resThree").toString()]!!.name)
-
 
                 box1.text = resList[intent.getStringExtra("resOne").toString()]!!.name
                 //               intent.putExtra("resOne", resList["6"]!!.name)
@@ -215,12 +191,9 @@ class MyRouteActivity : AppCompatActivity() {
                 oys2 += resList[intent.getStringExtra("resTwo").toString()]!!.oysterNumber.toInt()
                 oys3 += resList[intent.getStringExtra("resThree").toString()]!!.oysterNumber.toInt()
 
-//                totalOysterCollected += resList["6"]!!.oysterNumber.toInt()
-//                totalOysterCollected +=  resList["9"]!!.oysterNumber.toInt()
-//                totalOysterCollected += resList["11"]!!.oysterNumber.toInt()
+
 
                 collectedText.text = (totalOysterCollected.toString() + " Oysters")
-//                intent.putExtra("TotalCollected", totalOysterCollected.toString())
 
 
 
@@ -231,6 +204,11 @@ class MyRouteActivity : AppCompatActivity() {
                 // Required
             }
         })
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.menu_main, menu)
+        return true
     }
 
     private fun searchRestaurant(searchFor:String){

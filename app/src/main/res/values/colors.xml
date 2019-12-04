@@ -12,4 +12,6 @@
     <color name="darkBlue">#02021B</color>
     <color name="myBlue">#02021B</color>
     <color name="pink">#F16C7B</color>
+    <color name="grey">#494747</color>
+    <color name="blue">#1E8ADD</color>
 </resources>

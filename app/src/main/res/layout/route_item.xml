@@ -40,27 +40,19 @@
                         android:layout_marginRight="10dp"
                         android:layout_toRightOf="@id/route_item"
                         tools:srcCompat="@drawable/ic_route_icon" />
-<!--                    <TextView-->
-<!--                        android:id="@+id/milesAway"-->
-<!--                        android:layout_width="wrap_content"-->
-<!--                        android:layout_height="wrap_content"-->
-
-<!--                        android:layout_toRightOf="@id/route_item"-->
-<!--                        android:layout_marginTop="10dp"-->
-<!--                        android:layout_weight="1"-->
-<!--                        tools:text="@string/miles_away" />-->
 
                     <RelativeLayout
                         android:id="@+id/expandableView"
                         android:layout_width="match_parent"
-                        android:layout_marginTop="50dp"
                         android:visibility="gone"
+                        android:layout_marginTop="50dp"
                         android:layout_height="170dp">
 
                         <TextView
                             android:id="@+id/restaurant1"
                             android:textSize="20dp"
-                            android:layout_width="350dp"                            android:fontFamily="sans-serif-medium"
+                            android:layout_width="350dp"
+                            android:fontFamily="sans-serif-medium"
                             android:layout_height="wrap_content"
                             android:textColor="@color/royalBlue"
                             android:layout_marginStart="10dp"
@@ -72,7 +64,8 @@
                         <TextView
                             android:id="@+id/restaurant2"
                             android:textSize="20dp"
-                            android:layout_width="350dp"                            android:fontFamily="sans-serif-medium"
+                            android:layout_width="350dp"
+                            android:fontFamily="sans-serif-medium"
                             android:layout_height="wrap_content"
                             android:textColor="@color/royalBlue"
                             android:layout_marginStart="10dp"
@@ -87,7 +80,8 @@
                         <TextView
                             android:id="@+id/restaurant3"
                             android:textSize="20dp"
-                            android:layout_width="350dp"                            android:layout_height="wrap_content"
+                            android:layout_width="350dp"
+                            android:layout_height="wrap_content"
                             android:layout_marginStart="10dp"
                             android:paddingLeft="15dp"
                             android:textColor="@color/royalBlue"
@@ -101,8 +95,10 @@
                             android:id="@+id/restaurant4"
                             android:textSize="20dp"
                             android:fontFamily="sans-serif-medium"
-                            android:layout_width="350dp"                            android:textColor="@color/royalBlue"
-                            android:paddingLeft="15dp"                            android:layout_height="wrap_content"
+                            android:layout_width="350dp"
+                            android:textColor="@color/royalBlue"
+                            android:paddingLeft="15dp"
+                            android:layout_height="wrap_content"
                             android:layout_marginStart="10dp"
 
                             android:text="restaurant4"
@@ -111,17 +107,17 @@
 
                         <Button
                             android:id="@+id/startRoutebtn"
-                            android:layout_width="120dp"
-                            android:layout_height="80dp"
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
                             android:layout_below="@+id/restaurant4"
                             android:textAlignment="center"
                             android:background="@drawable/fill_btn"
                             android:fontFamily="sans-serif-medium"
-                            android:layout_marginStart="10dp"
-                            android:text="Start Route"
+                            android:layout_marginStart="350dp"
                             android:textAllCaps="false"
                             android:layout_marginBottom="10dp"
                             android:textColor="@color/white"
+                            android:drawableRight="@drawable/up_arrow"
                             android:textSize="16sp" />
 
                     </RelativeLayout>

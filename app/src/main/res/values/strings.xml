@@ -10,9 +10,9 @@
     <string name="title_activity_maps">Map</string>
 
 
-    <string name="route1txt">Route - Dist</string>
-    <string name="route2txt">Route - Dist</string>
-    <string name="route3txt">Route - Dist</string>
+    <string name="route1txt">Route </string>
+    <string name="route2txt">Route </string>
+    <string name="route3txt">Route </string>
 
 
     <string name="route">Route:</string>
