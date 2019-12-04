@@ -204,6 +204,8 @@ class MyRouteActivity : AppCompatActivity() {
                         //intent.putExtra("resOne", resList["11"]!!.name)
                         oys4 += resList[intent.getStringExtra("resFour").toString()]!!.oysterNumber.toInt()
                         address4 = resList[intent.getStringExtra("resFour").toString()]!!.address
+                    }else{
+                        row4.visibility = View.INVISIBLE
                     }
                 }catch (e: KotlinNullPointerException ){
                     row4.visibility = View.INVISIBLE
